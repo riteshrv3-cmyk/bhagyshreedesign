@@ -20,6 +20,7 @@ window.SITE = {
     { file: "purple-brocade-panel-blouse.jpg", caption: "g6", w: 1400, h: 1027 },
     { file: "pink-net-sleeve-detail.jpg", caption: "g7", w: 779, h: 1400 },
     { file: "gold-stripe-blouse-back.jpg", caption: "g8", w: 1400, h: 1400 },
-    { file: "gold-stripe-blouse-back-close.jpg", caption: "g8", w: 1400, h: 1261 }
+    { file: "gold-stripe-blouse-back-close.jpg", caption: "g8", w: 1400, h: 1261 },
+    { file: "lavender-sweetheart-puff-sleeve-blouse-branded.webp", caption: "g10", w: 735, h: 1105 }
   ]
 };
