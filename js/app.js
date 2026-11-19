@@ -1,162 +1,512 @@
 (function () {
   var S = window.SITE;
-  var T = {
-    en: {
-      nav_work: "Work", nav_services: "Services", nav_about: "About", nav_visit: "Visit",
-      hero_kicker: "Ladies tailor and designer, Wagholi, Pune",
-      hero_title: "Made to fit. <em>Made by hand.</em>",
-      hero_sub: "Blouses, suits, kurtis, lehengas and gowns, cut and stitched to your measurements. Over 20 years of trusted work.",
-      btn_wa: "WhatsApp us", btn_call: "Call now", btn_map: "Open in Maps",
-      f1: "20+ years", f2: "Perfect fitting", f3: "On-time delivery", f4: "Fair prices",
-      work_title: "Recent work", work_note: "A few pieces from our studio. Tap a photo to see it larger.",
-      g1: "Silk lehenga with brocade jacket", g2: "Brocade blouse, gold lace open back", g3: "Green brocade blouse with silk saree",
-      g4: "Satin blouse with tie-up back", g5: "Embroidered blouse with net sleeves", g6: "Brocade panel blouse with potli buttons",
-      g7: "Net puff sleeve with sequin detail", g8: "Keyhole back blouse in zari stripes",
-      g10: "Lavender sweetheart blouse with puff sleeves",
-      services_title: "What we stitch", services_note: "Bring your fabric and an idea, or a photo of a design you like.",
-      s1_t: "Blouses", s1_d: "Saree blouses, designer backs, bridal and festive blouses.",
-      s2_t: "Salwar suits and kurtis", s2_d: "Punjabi suits, kurtis and dress material, stitched in your style.",
-      s3_t: "Lehengas and gowns", s3_d: "Bridal, party and festive wear made to your measurements.",
-      s4_t: "Alterations and fittings", s4_d: "Resizing, repairs and finishing for clothes you already own.",
-      s5_t: "Ready designs", s5_d: "Pieces made in our own designs. Ask on WhatsApp what is available.",
-      about_title: "Twenty years of fitting", about_quote: "“A good blouse is not about the fabric. It is about the fit.”",
-      about_text: "Bhagyshree Design is a home studio in Wagholi, Pune. For more than 20 years we have stitched for the women of our area, from everyday suits to wedding lehengas. Every piece is measured, cut and finished by hand, and delivered when we promise.",
-      w1_t: "Perfect fitting", w1_d: "Measured with care and adjusted until it sits right.",
-      w2_t: "Our own designs", w2_d: "New necklines, backs and sleeves, or we stitch the design you bring.",
-      w3_t: "On time, every time", w3_d: "Your outfit is ready before the function, as promised.",
-      w4_t: "Affordable and friendly", w4_d: "Fair prices and a personal touch. Message us for a quote.",
-      steps_title: "How to order",
-      st1_t: "Send a message", st1_d: "WhatsApp us a photo of the design you want, or just tell us the occasion.",
-      st2_t: "Come for measurement", st2_d: "Visit our studio with your fabric. We take measurements and confirm the price and date.",
-      st3_t: "Collect your outfit", st3_d: "Try it on, we fine-tune the fitting, and it is ready on the date we promised.",
-      visit_title: "Visit our studio", visit_sub: "Open every day. Find us in Sai Park Society, opposite Raisoni College, Wagholi.",
-      visit_addr: "Address", visit_hours: "Hours", visit_phone: "Phone and WhatsApp",
-      hours: "Every day, 10 am to 8 pm",
-      wa_msg: "Hello Bhagyshree Design, I would like to get something stitched.",
-      btn_ask: "I want this design",
-      ask_msg: "Hello Bhagyshree Design, I like this design on your website: {v}. Can you stitch it for me?",
-      bar_call: "Call", bar_wa: "WhatsApp",
-      form_title: "Ask on WhatsApp", form_note: "Fill this in and tap the button. WhatsApp opens with your message ready, you only press send.",
-      form_name: "Your name", form_name_ph: "e.g. Priya", form_item: "What to stitch", opt_choose: "Choose one", opt_other: "Something else",
-      form_date: "Needed by", form_send: "Send on WhatsApp",
-      form_small: "Nothing is saved on this website. Your message goes straight to our WhatsApp.",
-      msg_hi: "Hello Bhagyshree Design.", msg_name: "My name is {v}.", msg_item: "I want to get this stitched: {v}.",
-      msg_none: "I would like to get something stitched.", msg_date: "I need it by {v}.",
-      footer: "Ladies tailor and designer, Wagholi, Pune"
-    },
-    mr: {
-      nav_work: "काम", nav_services: "सेवा", nav_about: "आमच्याविषयी", nav_visit: "भेट द्या",
-      hero_kicker: "लेडीज टेलर आणि डिझायनर, वाघोली, पुणे",
-      hero_title: "अचूक फिटिंग. <em>हाताने शिवलेले.</em>",
-      hero_sub: "ब्लाउज, सूट, कुर्ती, लेहेंगा आणि गाऊन, तुमच्या मापाप्रमाणे कापून शिवलेले. २० वर्षांहून अधिक विश्वासाचे काम.",
-      btn_wa: "WhatsApp करा", btn_call: "कॉल करा", btn_map: "नकाशा उघडा",
-      f1: "२०+ वर्षे", f2: "अचूक फिटिंग", f3: "वेळेवर डिलिव्हरी", f4: "योग्य दर",
-      work_title: "आमचे काम", work_note: "आमच्या स्टुडिओतील काही कपडे. मोठा फोटो पाहण्यासाठी फोटोवर टॅप करा.",
-      g1: "ब्रोकेड जॅकेटसह सिल्क लेहेंगा", g2: "गोल्ड लेस ओपन बॅक ब्रोकेड ब्लाउज", g3: "सिल्क साडीसाठी हिरवा ब्रोकेड ब्लाउज",
-      g4: "टाय-अप बॅक सॅटिन ब्लाउज", g5: "नेट स्लीव्हसह एम्ब्रॉयडरी ब्लाउज", g6: "पोटली बटण ब्रोकेड पॅनल ब्लाउज",
-      g7: "सिक्विन डिटेलसह नेट पफ स्लीव्ह", g8: "जरी पट्ट्यांचा कीहोल बॅक ब्लाउज",
-      g10: "लॅव्हेंडर स्वीटहार्ट पफ-स्लीव्ह ब्लाउज",
-      services_title: "आम्ही काय शिवतो", services_note: "तुमचे कापड आणि कल्पना घेऊन या, किंवा आवडलेल्या डिझाइनचा फोटो दाखवा.",
-      s1_t: "ब्लाउज", s1_d: "साडी ब्लाउज, डिझायनर बॅक, ब्रायडल आणि सणासुदीचे ब्लाउज.",
-      s2_t: "सलवार सूट आणि कुर्ती", s2_d: "पंजाबी सूट, कुर्ती आणि ड्रेस मटेरियल तुमच्या आवडीप्रमाणे.",
-      s3_t: "लेहेंगा आणि गाऊन", s3_d: "ब्रायडल, पार्टी आणि सणासुदीचे कपडे तुमच्या मापाप्रमाणे.",
-      s4_t: "अल्टरेशन आणि फिटिंग", s4_d: "तुमच्या कपड्यांचे माप बदलणे, दुरुस्ती आणि फिनिशिंग.",
-      s5_t: "रेडी डिझाइन", s5_d: "आमच्या स्वतःच्या डिझाइनचे कपडे. काय उपलब्ध आहे ते WhatsApp वर विचारा.",
-      about_title: "वीस वर्षांचे फिटिंग", about_quote: "“चांगला ब्लाउज कापडामुळे नाही, फिटिंगमुळे सुंदर दिसतो.”",
-      about_text: "भाग्यश्री डिझाइन हा वाघोली, पुणे येथील होम स्टुडिओ आहे. २० वर्षांहून अधिक काळ आम्ही परिसरातील महिलांसाठी रोजच्या सूटपासून लग्नाच्या लेहेंग्यापर्यंत कपडे शिवत आहोत. प्रत्येक कपडा मोजून, कापून आणि हाताने फिनिश करून ठरलेल्या वेळेत दिला जातो.",
-      w1_t: "अचूक फिटिंग", w1_d: "काळजीपूर्वक माप, आणि योग्य बसेपर्यंत बदल.",
-      w2_t: "स्वतःचे डिझाइन", w2_d: "नवीन नेकलाइन, बॅक आणि स्लीव्ह, किंवा तुम्ही आणलेले डिझाइन.",
-      w3_t: "नेहमी वेळेवर", w3_d: "कार्यक्रमाच्या आधी, ठरल्याप्रमाणे तुमचा ड्रेस तयार.",
-      w4_t: "परवडणारे दर, आपुलकीची सेवा", w4_d: "योग्य दर आणि आपुलकीने सेवा. दरासाठी मेसेज करा.",
-      steps_title: "ऑर्डर कशी द्यावी",
-      st1_t: "मेसेज करा", st1_d: "हवे असलेल्या डिझाइनचा फोटो WhatsApp करा, किंवा फक्त कार्यक्रम सांगा.",
-      st2_t: "मापासाठी या", st2_d: "कापड घेऊन स्टुडिओत या. आम्ही माप घेऊन दर आणि तारीख ठरवू.",
-      st3_t: "ड्रेस घेऊन जा", st3_d: "घालून बघा, फिटिंग नीट करू, आणि ठरलेल्या तारखेला ड्रेस तयार.",
-      visit_title: "स्टुडिओला भेट द्या", visit_sub: "रोज सुरू. आम्ही साई पार्क सोसायटी, रायसोनी कॉलेजसमोर, वाघोली येथे आहोत.",
-      visit_addr: "पत्ता", visit_hours: "वेळ", visit_phone: "फोन आणि WhatsApp",
-      hours: "रोज सकाळी १० ते रात्री ८",
-      wa_msg: "नमस्कार भाग्यश्री डिझाइन, मला कपडे शिवून घ्यायचे आहेत.",
-      btn_ask: "हे डिझाइन हवे आहे",
-      ask_msg: "नमस्कार भाग्यश्री डिझाइन, मला तुमच्या वेबसाइटवरील हे डिझाइन आवडले: {v}. हे मला शिवून मिळेल का?",
-      bar_call: "कॉल", bar_wa: "WhatsApp",
-      form_title: "WhatsApp वर विचारा", form_note: "हे भरा आणि बटण दाबा. तुमचा मेसेज तयार होऊन WhatsApp उघडेल, फक्त सेंड दाबा.",
-      form_name: "तुमचे नाव", form_name_ph: "उदा. प्रिया", form_item: "काय शिवायचे आहे", opt_choose: "निवडा", opt_other: "इतर काही",
-      form_date: "कधीपर्यंत हवे", form_send: "WhatsApp वर पाठवा",
-      form_small: "या वेबसाइटवर काहीही साठवले जात नाही. तुमचा मेसेज थेट आमच्या WhatsApp वर जातो.",
-      msg_hi: "नमस्कार भाग्यश्री डिझाइन.", msg_name: "माझे नाव {v}.", msg_item: "मला हे शिवून घ्यायचे आहे: {v}.",
-      msg_none: "मला कपडे शिवून घ्यायचे आहेत.", msg_date: "मला हे {v} पर्यंत हवे आहे.",
-      footer: "लेडीज टेलर आणि डिझायनर, वाघोली, पुणे"
-    }
-  };
+  var I = window.I18N;
+  var doc = document;
+  doc.documentElement.classList.add("js");
 
   var lang = "en";
   try { if (localStorage.getItem("lang") === "mr") lang = "mr"; } catch (e) {}
 
+  function $(id) { return doc.getElementById(id); }
+  function all(sel, root) { return Array.prototype.slice.call((root || doc).querySelectorAll(sel)); }
+  function t() { return I[lang]; }
+  function reduced() { return !!(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches); }
   function waLink(text) { return "https://wa.me/" + S.phone + "?text=" + encodeURIComponent(text); }
   function fill(tpl, v) { return tpl.replace("{v}", v); }
+  function fmt(n) { return lang === "mr" ? Number(n).toLocaleString("mr-IN", { useGrouping: false }) : String(n); }
+  function el(tag, cls, text) {
+    var n = doc.createElement(tag);
+    if (cls) n.className = cls;
+    if (text) n.textContent = text;
+    return n;
+  }
 
-  // gallery: every photo gets its own "I want this design" WhatsApp button
-  var g = document.getElementById("gallery");
+  // ---------- data: gallery and catalog become one list of designs ----------
+  var items = [];
   S.gallery.forEach(function (p) {
-    var f = document.createElement("figure");
-    f.innerHTML = '<div class="frame"><img loading="lazy" decoding="async" src="images/' + p.file + '" width="' + p.w + '" height="' + p.h + '" alt=""></div>' +
-      '<figcaption data-i18n="' + p.caption + '"></figcaption>' +
-      '<a class="ask" data-ask target="_blank" rel="noopener" data-i18n="btn_ask"></a>';
-    g.appendChild(f);
+    items.push({ src: "images/" + p.file, w: p.w, h: p.h, group: p.group || "blouse", cap: p.caption });
+  });
+  S.catalog.forEach(function (c) {
+    items.push({ src: "images/catalog/" + c.file, group: c.group, en: c.en, mr: c.mr });
+  });
+  function nameOf(it) { return it.cap ? (I[lang][it.cap] || "") : (it[lang] || ""); }
+
+  var TABS = [
+    { k: "all", l: "cat_all", test: function () { return true; } },
+    { k: "blouse", l: "cat_blouses", test: function (g) { return g === "blouse"; } },
+    { k: "lehenga", l: "cat_lehenga", test: function (g) { return g === "lehenga" || g === "dress"; } },
+    { k: "bag", l: "cat_bags", test: function (g) { return g === "bag"; } }
+  ];
+  var tab = TABS[0];
+
+  // ---------- hero carousel ----------
+  var slides = S.heroSlides || [];
+  var slideBox = $("slides"), dotBox = $("dots"), heroEl = $("hero");
+  var slideEls = [], dotEls = [], cur = 0, timer = null;
+  var hold = { hover: false, focus: false, touch: false, away: false };
+
+  slides.forEach(function (s, i) {
+    var d = el("div", "slide");
+    var img = doc.createElement("img");
+    img.src = s.src;
+    img.alt = "";
+    img.decoding = "async";
+    if (i === 0) img.setAttribute("fetchpriority", "high"); else img.loading = "lazy";
+    d.appendChild(img);
+    slideBox.appendChild(d);
+    slideEls.push(d);
+    var b = el("button", "dot");
+    b.type = "button";
+    b.setAttribute("aria-label", (i + 1) + " / " + slides.length);
+    b.addEventListener("click", function () { goSlide(i); restart(); });
+    dotBox.appendChild(b);
+    dotEls.push(b);
   });
 
-  // photo viewer
-  var dlg = document.getElementById("viewer");
-  g.addEventListener("click", function (e) {
-    var fig = e.target.closest("figure");
-    if (!fig || e.target.closest("a") || !dlg.showModal) return;
-    var img = fig.querySelector("img");
-    dlg.querySelector("img").src = img.src;
-    dlg.querySelector("img").alt = img.alt;
-    dlg.querySelector("p").textContent = fig.querySelector("figcaption").textContent;
-    dlg.querySelector(".ask").href = fig.querySelector("[data-ask]").href;
-    dlg.showModal();
+  function slideName(s) { return s.caption ? (I[lang][s.caption] || "") : (s[lang] || ""); }
+  function goSlide(n) {
+    if (!slides.length) return;
+    cur = (n + slides.length) % slides.length;
+    slideEls.forEach(function (d, i) {
+      d.classList.toggle("on", i === cur);
+      d.setAttribute("aria-hidden", String(i !== cur));
+    });
+    dotEls.forEach(function (b, i) { b.setAttribute("aria-current", String(i === cur)); });
+    $("heroCap").textContent = slideName(slides[cur]);
+  }
+  function paused() { return hold.hover || hold.focus || hold.touch || hold.away || doc.hidden; }
+  function restart() {
+    if (timer) clearInterval(timer);
+    timer = null;
+    if (reduced() || slides.length < 2) return;
+    timer = setInterval(function () { if (!paused()) goSlide(cur + 1); }, 5000);
+  }
+  $("slidePrev").addEventListener("click", function () { goSlide(cur - 1); restart(); });
+  $("slideNext").addEventListener("click", function () { goSlide(cur + 1); restart(); });
+  heroEl.addEventListener("mouseenter", function () { hold.hover = true; });
+  heroEl.addEventListener("mouseleave", function () { hold.hover = false; });
+  heroEl.addEventListener("focusin", function () { hold.focus = true; });
+  heroEl.addEventListener("focusout", function () { hold.focus = false; });
+  heroEl.addEventListener("keydown", function (e) {
+    if (e.key === "ArrowLeft") { goSlide(cur - 1); restart(); }
+    else if (e.key === "ArrowRight") { goSlide(cur + 1); restart(); }
   });
-  dlg.addEventListener("click", function (e) { if (e.target === dlg || e.target.className === "close") dlg.close(); });
+  var hx = 0, hy = 0, touchTimer = null;
+  heroEl.addEventListener("touchstart", function (e) {
+    hold.touch = true;
+    hx = e.touches[0].clientX; hy = e.touches[0].clientY;
+  }, { passive: true });
+  heroEl.addEventListener("touchend", function (e) {
+    var dx = e.changedTouches[0].clientX - hx, dy = e.changedTouches[0].clientY - hy;
+    if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy)) { goSlide(cur + (dx < 0 ? 1 : -1)); restart(); }
+    clearTimeout(touchTimer);
+    touchTimer = setTimeout(function () { hold.touch = false; }, 3000);
+  }, { passive: true });
+  if ("IntersectionObserver" in window) {
+    new IntersectionObserver(function (en) { hold.away = !en[0].isIntersecting; }, { threshold: 0.2 }).observe(heroEl);
+  }
+  goSlide(0);
+  restart();
 
-  // enquiry form: builds a WhatsApp message, nothing is sent to any server
-  var form = document.getElementById("enquiryForm");
+  // ---------- catalog ----------
+  var tabBox = $("tabs"), grid = $("grid"), figs = [];
+  TABS.forEach(function (tb) {
+    var n = items.filter(function (it) { return tb.test(it.group); }).length;
+    if (!n) return;
+    var b = el("button", "tab");
+    b.type = "button";
+    b.dataset.tab = tb.k;
+    var sp = el("span");
+    sp.setAttribute("data-i18n", tb.l);
+    b.appendChild(sp);
+    b.appendChild(el("b", "ct", String(n)));
+    b.addEventListener("click", function () { tab = tb; applyFilter(true); });
+    tabBox.appendChild(b);
+  });
+  items.forEach(function (it, i) {
+    var f = el("figure", "item r" + (i % 4));
+    var btn = el("button", "thumb");
+    btn.type = "button";
+    var img = doc.createElement("img");
+    img.loading = "lazy"; img.decoding = "async"; img.src = it.src; img.alt = "";
+    if (it.w && it.h) { img.width = it.w; img.height = it.h; }
+    btn.appendChild(img);
+    btn.addEventListener("click", function () { openViewer(visibleItems(), visibleItems().indexOf(it), btn); });
+    var cap = el("figcaption");
+    cap.appendChild(el("span", "nm"));
+    var a = el("a", "ask");
+    a.target = "_blank"; a.rel = "noopener";
+    a.setAttribute("data-i18n", "btn_ask");
+    cap.appendChild(a);
+    f.appendChild(btn); f.appendChild(cap);
+    grid.appendChild(f);
+    figs.push({ fig: f, item: it, img: img, btn: btn, nm: cap.firstChild, ask: a });
+  });
+  function visibleItems() { return items.filter(function (it) { return tab.test(it.group); }); }
+  function applyFilter(animate) {
+    var n = 0;
+    figs.forEach(function (c) {
+      var show = tab.test(c.item.group);
+      c.fig.hidden = !show;
+      c.fig.classList.remove("pop");
+      if (show) {
+        if (animate && !reduced()) {
+          void c.fig.offsetWidth;
+          c.fig.style.animationDelay = Math.min(n, 14) * 35 + "ms";
+          c.fig.classList.add("pop");
+        }
+        n++;
+      }
+    });
+    all(".tab", tabBox).forEach(function (b) { b.setAttribute("aria-pressed", String(b.dataset.tab === tab.k)); });
+  }
+
+  // ---------- viewer (native dialog: focus trap, Esc, backdrop) ----------
+  var dlg = $("viewer"), vImg = $("vImg"), vList = [], vIdx = 0;
+  function showViewer() {
+    var it = vList[vIdx];
+    if (!it) return;
+    var name = nameOf(it);
+    vImg.classList.remove("swap");
+    void vImg.offsetWidth;
+    vImg.classList.add("swap");
+    vImg.src = it.src;
+    vImg.alt = name;
+    $("vName").textContent = name;
+    $("vCount").textContent = fmt(vIdx + 1) + " / " + fmt(vList.length);
+    $("vAsk").href = waLink(fill(t().ask_msg, name));
+    var many = vList.length > 1;
+    $("vPrev").hidden = !many; $("vNext").hidden = !many;
+    if (many) {
+      var nx = new Image(); nx.src = vList[(vIdx + 1) % vList.length].src;
+      var pv = new Image(); pv.src = vList[(vIdx - 1 + vList.length) % vList.length].src;
+    }
+  }
+  function openViewer(list, idx) {
+    if (idx < 0) idx = 0;
+    vList = list; vIdx = idx;
+    showViewer();
+    if (!dlg.open) {
+      if (dlg.showModal) dlg.showModal(); else dlg.setAttribute("open", "");
+    }
+  }
+  function stepViewer(d) {
+    if (vList.length < 2) return;
+    vIdx = (vIdx + d + vList.length) % vList.length;
+    showViewer();
+  }
+  function closeViewer() {
+    if (dlg.close) dlg.close(); else dlg.removeAttribute("open");
+  }
+  $("vClose").addEventListener("click", closeViewer);
+  $("vPrev").addEventListener("click", function () { stepViewer(-1); });
+  $("vNext").addEventListener("click", function () { stepViewer(1); });
+  dlg.addEventListener("keydown", function (e) {
+    if (e.key === "ArrowLeft") { stepViewer(-1); e.preventDefault(); }
+    else if (e.key === "ArrowRight") { stepViewer(1); e.preventDefault(); }
+    else if (e.key === "Escape" && !dlg.showModal) closeViewer();
+  });
+  dlg.addEventListener("click", function (e) {
+    if (e.target === dlg || e.target.classList.contains("v-stage")) closeViewer();
+  });
+  var vx = 0, vy = 0;
+  dlg.addEventListener("touchstart", function (e) { vx = e.touches[0].clientX; vy = e.touches[0].clientY; }, { passive: true });
+  dlg.addEventListener("touchend", function (e) {
+    var dx = e.changedTouches[0].clientX - vx, dy = e.changedTouches[0].clientY - vy;
+    if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy) * 1.2) stepViewer(dx < 0 ? 1 : -1);
+  }, { passive: true });
+
+  // ---------- bridal ----------
+  var bridalItems = items.filter(function (it) { return it.group === "lehenga" || it.group === "dress"; });
+  var bridalBox = $("bridalRow"), bridalFigs = [];
+  var bImg = $("bridalImg");
+  if (bridalItems.length) bImg.src = bridalItems[bridalItems.length - 1].src;
+  bridalItems.forEach(function (it, i) {
+    var b = el("button", "b-card rv");
+    b.type = "button";
+    b.style.setProperty("--d", i * 90 + "ms");
+    var img = doc.createElement("img");
+    img.loading = "lazy"; img.decoding = "async"; img.src = it.src; img.alt = "";
+    var sp = el("span");
+    b.appendChild(img); b.appendChild(sp);
+    b.addEventListener("click", function () { openViewer(bridalItems, i); });
+    bridalBox.appendChild(b);
+    bridalFigs.push({ img: img, sp: sp, item: it });
+  });
+
+  // ---------- prices ----------
+  var PRICE_ROWS = [["blouse", "p_blouse"], ["designer", "p_designer"], ["suit", "p_suit"], ["lehenga", "p_lehenga"], ["alter", "p_alter"]];
+  function renderPrices() {
+    var ul = $("priceList"), tt = t();
+    ul.textContent = "";
+    PRICE_ROWS.forEach(function (r) {
+      var li = el("li");
+      var name = tt[r[1]];
+      li.appendChild(el("span", "pn", name));
+      li.appendChild(el("span", "pl"));
+      var raw = String((S.prices && S.prices[r[0]]) || "").trim();
+      if (raw) {
+        var label = /^\d/.test(raw) ? "₹" + raw : raw;
+        li.appendChild(el("span", "pv", lang === "mr" ? label + " " + tt.price_from : tt.price_from + " " + label));
+      } else {
+        var a = el("a", "pv ask-price", tt.price_ask);
+        a.href = waLink(fill(tt.price_wa_msg, name));
+        a.target = "_blank"; a.rel = "noopener";
+        li.appendChild(a);
+      }
+      ul.appendChild(li);
+    });
+  }
+
+  // ---------- reviews ----------
+  // Reviews come from the database (S.reviewsApi); S.reviews holds any typed in by hand.
+  var API = S.reviewsApi && S.reviewsApi.url && S.reviewsApi.key ? S.reviewsApi : null;
+  var ITEM_KEY = { blouse: "p_blouse", designer: "p_designer", suit: "p_suit", lehenga: "p_lehenga", alter: "p_alter", other: "opt_other" };
+  var dbReviews = [], reviewsLoaded = !API;
+  function apiHeaders(json) {
+    var h = { apikey: API.key };
+    if (json) { h["Content-Type"] = "application/json"; h.Prefer = "return=minimal"; }
+    return h;
+  }
+  function loadReviews() {
+    if (!API || !window.fetch) return;
+    fetch(API.url + "/rest/v1/reviews?select=name,rating,item,message,created_at&order=created_at.desc&limit=60", { headers: apiHeaders(false) })
+      .then(function (r) { return r.ok ? r.json() : []; })
+      .then(function (rows) { dbReviews = Array.isArray(rows) ? rows : []; })
+      .catch(function () { dbReviews = []; })
+      .then(function () { reviewsLoaded = true; renderReviews(); });
+  }
+  function starText(n) { return new Array(n + 1).join("★"); }
+  function renderReviews() {
+    var tt = t(), box = $("reviewCards");
+    var list = dbReviews.map(function (r) { return { name: r.name, text: r.message, stars: r.rating, item: r.item }; })
+      .concat((S.reviews || []).map(function (r) { return { name: r.name, text: r.text, stars: r.stars, item: r.item }; }));
+    box.textContent = "";
+    box.hidden = !list.length;
+    var sum = 0, rated = 0;
+    list.forEach(function (r) {
+      var n = Math.max(0, Math.min(5, Math.round(Number(r.stars) || 0)));
+      if (n) { sum += n; rated++; }
+      var c = el("figure", "rcard");
+      if (n) {
+        var st = el("div", "stars", starText(n));
+        st.setAttribute("role", "img");
+        st.setAttribute("aria-label", fill(tt.rv_star, fmt(n)));
+        c.appendChild(st);
+      }
+      c.appendChild(el("blockquote", "", r.text || ""));
+      var cap = el("figcaption", "", r.name || "");
+      if (r.item && ITEM_KEY[r.item]) cap.appendChild(el("span", "ritem", tt[ITEM_KEY[r.item]]));
+      c.appendChild(cap);
+      box.appendChild(c);
+    });
+    var sm = $("rvSummary");
+    if (rated) {
+      var avg = Math.round((sum / rated) * 10) / 10, avgTxt = lang === "mr" ? avg.toLocaleString("mr-IN", { minimumFractionDigits: 1, maximumFractionDigits: 1 }) : avg.toFixed(1);
+      $("rvAvg").textContent = avgTxt;
+      $("rvAvg").setAttribute("aria-label", fill(tt.rv_avg, avgTxt));
+      $("rvAvgStars").textContent = starText(Math.round(avg));
+      $("rvCount").textContent = list.length === 1 ? tt.rv_count_one : fill(tt.rv_count, fmt(list.length));
+      sm.hidden = false;
+    } else sm.hidden = true;
+    $("rvNone").hidden = !(reviewsLoaded && API && !list.length);
+    $("rvOpen").hidden = !API;
+    var g = $("googleBtn");
+    if (S.googleReviewsUrl) { g.href = S.googleReviewsUrl; g.hidden = false; } else { g.hidden = true; }
+    $("feedbackBtn").href = waLink(tt.reviews_wa_msg);
+    all("#starRow input").forEach(function (inp) { inp.setAttribute("aria-label", fill(tt.rv_star, fmt(Number(inp.value)))); });
+    $("rvMsg").textContent = rvMsgKey ? tt[rvMsgKey] : "";
+  }
+
+  // ---------- review form: saves a review that shows on the site straight away ----------
+  var rvForm = $("reviewForm"), rvOpen = $("rvOpen"), rvMsgKey = "", rvBusy = false;
+  var starLabels = all("#starRow label");
+  function rating() { var c = rvForm.querySelector("input[name=rating]:checked"); return c ? Number(c.value) : 0; }
+  function lightStars(n) { starLabels.forEach(function (l, i) { l.classList.toggle("lit", i < n); }); }
+  function setRvMsg(key, ok) { rvMsgKey = key; var m = $("rvMsg"); m.textContent = key ? t()[key] : ""; m.classList.toggle("ok", !!ok); }
+  function showRvForm(open) {
+    rvForm.hidden = !open;
+    rvOpen.setAttribute("aria-expanded", String(open));
+    if (open) { $("rvThanks").hidden = true; $("st1").focus({ preventScroll: true }); rvForm.scrollIntoView({ behavior: reduced() ? "auto" : "smooth", block: "nearest" }); }
+  }
+  rvOpen.addEventListener("click", function () { showRvForm(rvForm.hidden); });
+  $("rvCancel").addEventListener("click", function () { setRvMsg(""); showRvForm(false); rvOpen.focus(); });
+  all("#starRow input").forEach(function (inp) {
+    inp.addEventListener("change", function () { lightStars(rating()); if (rvMsgKey === "rv_need_rating") setRvMsg(""); });
+  });
+  starLabels.forEach(function (l, i) {
+    l.addEventListener("mouseenter", function () { lightStars(i + 1); });
+    l.addEventListener("mouseleave", function () { lightStars(rating()); });
+  });
+  rvForm.addEventListener("submit", function (e) {
+    e.preventDefault();
+    if (rvBusy || !API) return;
+    var els = rvForm.elements, stars = rating();
+    var name = els.namedItem("rvname").value.trim(), text = els.namedItem("rvtext").value.trim(), item = els.namedItem("rvitem").value;
+    if (!stars) { setRvMsg("rv_need_rating"); $("st1").focus(); return; }
+    if (!name) { setRvMsg("rv_need_name"); els.namedItem("rvname").focus(); return; }
+    if (text.length < 3) { setRvMsg("rv_need_text"); els.namedItem("rvtext").focus(); return; }
+    function done() {
+      rvForm.reset(); lightStars(0); setRvMsg("");
+      showRvForm(false);
+      var th = $("rvThanks"); th.hidden = false; th.focus({ preventScroll: true });
+      loadReviews();
+    }
+    if (els.namedItem("website").value) { done(); return; } // bots fill the hidden field
+    rvBusy = true;
+    var btn = $("rvSubmit"); btn.disabled = true; btn.textContent = t().rv_sending; setRvMsg("");
+    fetch(API.url + "/rest/v1/reviews", {
+      method: "POST",
+      headers: apiHeaders(true),
+      body: JSON.stringify({ name: name.slice(0, 40), rating: stars, item: item || null, message: text.slice(0, 600) })
+    }).then(function (r) {
+      if (!r.ok) throw new Error(String(r.status));
+      done();
+    }).catch(function () {
+      setRvMsg("rv_error");
+    }).then(function () {
+      rvBusy = false; btn.disabled = false; btn.textContent = t().rv_submit;
+    });
+  });
+
+  // ---------- counters ----------
+  $("statDesigns").dataset.count = String(items.length);
+  var counters = all("[data-count]");
+  counters.forEach(function (c) { c._v = Number(c.dataset.count); c._done = true; });
+  function drawCounter(c) { c.textContent = fmt(Math.round(c._v)) + (c.dataset.suffix || ""); }
+  function runCounters() {
+    counters.forEach(function (c) {
+      var end = Number(c.dataset.count), t0 = null, dur = 1500;
+      function tick(ts) {
+        if (t0 === null) t0 = ts;
+        var p = Math.min(1, (ts - t0) / dur);
+        c._v = end * (1 - Math.pow(1 - p, 3));
+        drawCounter(c);
+        if (p < 1) requestAnimationFrame(tick); else c._done = true;
+      }
+      requestAnimationFrame(tick);
+    });
+  }
+  if (!reduced() && "IntersectionObserver" in window) {
+    counters.forEach(function (c) { c._v = 0; c._done = false; });
+    var so = new IntersectionObserver(function (en) {
+      if (en[0].isIntersecting) { so.disconnect(); runCounters(); }
+    }, { threshold: 0.4 });
+    so.observe(doc.querySelector(".stats"));
+  }
+
+  // ---------- scroll reveals ----------
+  all(".rvg").forEach(function (g) {
+    all(":scope > *", g).forEach(function (c, i) {
+      c.classList.add("rv");
+      c.style.setProperty("--d", Math.min(i, 6) * 80 + "ms");
+    });
+  });
+  var rvEls = all(".rv");
+  if ("IntersectionObserver" in window) {
+    var ro = new IntersectionObserver(function (en) {
+      en.forEach(function (x) { if (x.isIntersecting) { x.target.classList.add("in"); ro.unobserve(x.target); } });
+    }, { threshold: 0.12, rootMargin: "0px 0px -6% 0px" });
+    rvEls.forEach(function (n) { ro.observe(n); });
+  } else {
+    rvEls.forEach(function (n) { n.classList.add("in"); });
+  }
+
+  // ---------- header, menu, parallax ----------
+  var header = $("siteTop"), menuBtn = $("menuBtn"), bridal = $("bridal"), ticking = false;
+  function onScroll() {
+    ticking = false;
+    header.classList.toggle("solid", window.scrollY > 40);
+    if (!reduced()) {
+      var r = bridal.getBoundingClientRect();
+      if (r.bottom > 0 && r.top < window.innerHeight) {
+        var p = r.top + r.height / 2 - window.innerHeight / 2;
+        bImg.style.transform = "translate3d(0," + (p * -0.08).toFixed(1) + "px,0) scale(1.2)";
+      }
+    }
+  }
+  window.addEventListener("scroll", function () {
+    if (!ticking) { ticking = true; requestAnimationFrame(onScroll); }
+  }, { passive: true });
+  window.addEventListener("resize", onScroll);
+  function menuLabel() {
+    menuBtn.setAttribute("aria-label", t()[header.classList.contains("open") ? "menu_close" : "menu_open"]);
+  }
+  function setMenu(open) {
+    header.classList.toggle("open", open);
+    menuBtn.setAttribute("aria-expanded", String(open));
+    menuLabel();
+  }
+  menuBtn.addEventListener("click", function () { setMenu(!header.classList.contains("open")); });
+  all("#nav a").forEach(function (a) { a.addEventListener("click", function () { setMenu(false); }); });
+  doc.addEventListener("keydown", function (e) {
+    if (e.key === "Escape" && header.classList.contains("open")) { setMenu(false); menuBtn.focus(); }
+  });
+
+  // ---------- enquiry form: builds a WhatsApp message, nothing is sent to any server ----------
+  var form = $("enquiryForm");
   form.addEventListener("submit", function (e) {
     e.preventDefault();
-    var t = T[lang], parts = [t.msg_hi];
-    var el = form.elements, name = el.namedItem("custname").value.trim(), item = el.namedItem("garment").value, date = el.namedItem("needby").value;
-    if (name) parts.push(fill(t.msg_name, name));
-    parts.push(item ? fill(t.msg_item, item) : t.msg_none);
-    if (date) parts.push(fill(t.msg_date, new Date(date + "T00:00").toLocaleDateString(lang === "mr" ? "mr-IN" : "en-IN", { day: "numeric", month: "long", year: "numeric" })));
+    var tt = t(), parts = [tt.msg_hi];
+    var els = form.elements, name = els.namedItem("custname").value.trim(), item = els.namedItem("garment").value, date = els.namedItem("needby").value;
+    if (name) parts.push(fill(tt.msg_name, name));
+    parts.push(item ? fill(tt.msg_item, item) : tt.msg_none);
+    if (date) parts.push(fill(tt.msg_date, new Date(date + "T00:00").toLocaleDateString(lang === "mr" ? "mr-IN" : "en-IN", { day: "numeric", month: "long", year: "numeric" })));
     window.open(waLink(parts.join(" ")), "_blank", "noopener");
   });
 
+  // ---------- render: every language-dependent bit ----------
   function render() {
-    var t = T[lang];
-    document.documentElement.lang = lang;
-    document.querySelectorAll("[data-i18n]").forEach(function (el) {
-      var v = t[el.dataset.i18n] || "";
-      if (v.indexOf("<em>") > -1) el.innerHTML = v; else el.textContent = v;
+    var tt = t();
+    doc.documentElement.lang = lang;
+    all("[data-i18n]").forEach(function (n) {
+      var v = tt[n.dataset.i18n] || "";
+      if (v.indexOf("<em>") > -1) n.innerHTML = v; else n.textContent = v;
     });
-    document.querySelectorAll("[data-i18n-ph]").forEach(function (el) { el.placeholder = t[el.dataset.i18nPh] || ""; });
-    document.querySelectorAll(".gallery figure").forEach(function (f) {
-      var caption = f.querySelector("figcaption").textContent;
-      f.querySelector("img").alt = caption;
-      f.querySelector("[data-ask]").href = waLink(fill(t.ask_msg, caption));
+    all("[data-i18n-ph]").forEach(function (n) { n.placeholder = tt[n.dataset.i18nPh] || ""; });
+    all("[data-i18n-aria]").forEach(function (n) { n.setAttribute("aria-label", tt[n.dataset.i18nAria] || ""); });
+    menuLabel();
+    figs.forEach(function (c) {
+      var name = nameOf(c.item);
+      c.nm.textContent = name;
+      c.img.alt = name;
+      c.btn.setAttribute("aria-label", name);
+      c.ask.href = waLink(fill(tt.ask_msg, name));
+      c.ask.setAttribute("aria-label", tt.btn_ask + ": " + name);
     });
-    document.querySelectorAll(".lang button").forEach(function (b) { b.setAttribute("aria-pressed", String(b.dataset.lang === lang)); });
-    document.getElementById("addr").textContent = S.address[lang];
-    document.querySelectorAll("[data-wa]").forEach(function (a) { a.href = waLink(t.wa_msg); a.target = "_blank"; a.rel = "noopener"; });
+    bridalFigs.forEach(function (c) {
+      var name = nameOf(c.item);
+      c.sp.textContent = name; c.img.alt = name;
+    });
+    slides.forEach(function (s, i) { slideEls[i].firstChild.alt = slideName(s); });
+    $("heroCap").textContent = slides.length ? slideName(slides[cur]) : "";
+    all(".lang button").forEach(function (b) { b.setAttribute("aria-pressed", String(b.dataset.lang === lang)); });
+    $("addr").textContent = S.address[lang];
+    all("[data-wa]").forEach(function (a) { a.href = waLink(tt.wa_msg); a.target = "_blank"; a.rel = "noopener"; });
+    $("bridalCta").href = waLink(tt.bridal_wa_msg);
+    counters.forEach(function (c) { if (c._done) c._v = Number(c.dataset.count); drawCounter(c); });
+    renderPrices();
+    renderReviews();
+    if (dlg.open) showViewer();
   }
 
-  document.querySelectorAll("[data-call]").forEach(function (a) { a.href = "tel:+" + S.phone; });
-  document.getElementById("phoneText").textContent = S.phoneDisplay;
-  document.getElementById("mapBtn").href = "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(S.mapsQuery);
-  document.getElementById("mapFrame").src = "https://www.google.com/maps?q=" + encodeURIComponent(S.mapsQuery) + "&output=embed";
-  if (S.instagram) { var ig = document.getElementById("igLink"); ig.href = S.instagram; ig.hidden = false; }
+  all("[data-call]").forEach(function (a) { a.href = "tel:+" + S.phone; });
+  $("phoneText").textContent = S.phoneDisplay;
+  $("footPhone").textContent = S.phoneDisplay;
+  $("mapBtn").href = "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(S.mapsQuery);
+  $("mapFrame").src = "https://www.google.com/maps?q=" + encodeURIComponent(S.mapsQuery) + "&output=embed";
+  if (S.instagram) { var ig = $("igLink"); ig.href = S.instagram; ig.hidden = false; }
 
-  document.querySelectorAll(".lang button").forEach(function (b) {
-    b.addEventListener("click", function () { lang = b.dataset.lang; try { localStorage.setItem("lang", lang); } catch (e) {} render(); });
+  all(".lang button").forEach(function (b) {
+    b.addEventListener("click", function () {
+      lang = b.dataset.lang;
+      try { localStorage.setItem("lang", lang); } catch (e) {}
+      render();
+    });
   });
+
+  applyFilter(false);
+  loadReviews();
   render();
+  onScroll();
 })();
