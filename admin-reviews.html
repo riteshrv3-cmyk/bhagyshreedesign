@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="referrer" content="no-referrer">
+<title>Manage reviews | Bhagyshree Design</title>
+<style>
+  :root { --maroon: #5c0f1d; --gold: #c9a14a; --cream: #fbf4e6; --ivory: #fffaf1; --ink: #2a1a14; --muted: #6e5547; --line: rgba(201,161,74,.55); }
+  * { box-sizing: border-box; }
+  body { margin: 0; font: 400 1rem/1.5 "Segoe UI", system-ui, sans-serif; color: var(--ink); background: var(--cream); }
+  header { background: var(--maroon); color: var(--ivory); padding: 16px; border-bottom: 2px solid var(--gold); }
+  header h1 { margin: 0; font-size: 1.25rem; }
+  header p { margin: 4px 0 0; color: #e8d29b; font-size: .9rem; }
+  main { max-width: 760px; margin: 0 auto; padding: 16px; }
+  .tabs { display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; }
+  .tabs button, .act button { min-height: 44px; padding: 0 16px; border-radius: 4px; border: 1px solid var(--maroon); background: var(--ivory); color: var(--maroon); font: inherit; font-weight: 600; cursor: pointer; }
+  .tabs button[aria-pressed="true"] { background: var(--maroon); color: #e8d29b; }
+  .rev { background: var(--ivory); border: 1px solid var(--line); border-radius: 4px; padding: 16px; margin-bottom: 12px; }
+  .rev.pending { border-left: 4px solid var(--gold); }
+  .top { display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
+  .name { font-weight: 700; color: var(--maroon); }
+  .stars { color: var(--gold); letter-spacing: .1em; }
+  .meta { color: var(--muted); font-size: .85rem; }
+  .msg { margin: 8px 0 12px; white-space: pre-wrap; overflow-wrap: anywhere; }
+  .act { display: flex; gap: 8px; flex-wrap: wrap; }
+  .act .ok { background: #2f6b3a; border-color: #2f6b3a; color: #fff; }
+  .act .del { border-color: #a32020; color: #a32020; }
+  .status { padding: 12px 16px; border-radius: 4px; background: var(--ivory); border: 1px solid var(--line); }
+  .err { color: #a32020; font-weight: 600; }
+  button:disabled { opacity: .5; cursor: wait; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Manage reviews</h1>
+  <p>Private page. Every review shows on the website as soon as it is sent. Hide or delete any you do not want. Do not share this link.</p>
+</header>
+<main>
+  <div class="tabs" role="group" aria-label="Show">
+    <button type="button" data-f="pending" aria-pressed="false">Hidden</button>
+    <button type="button" data-f="approved" aria-pressed="true">On the website</button>
+    <button type="button" id="reload">Refresh</button>
+  </div>
+  <p class="status" id="status" role="status">Loading…</p>
+  <div id="list"></div>
+</main>
+<script src="js/config.js?v=9"></script>
+<script>
+(function () {
+  var API = window.SITE && window.SITE.reviewsApi;
+  var key = "";
+  var m = /[#&]k=([^&]+)/.exec(location.hash);
+  if (m) key = decodeURIComponent(m[1]);
+  var filter = "approved", rows = [];
+  var ITEMS = { blouse: "Blouse", designer: "Designer or bridal blouse", suit: "Salwar suit or kurti", lehenga: "Lehenga or gown", alter: "Alterations", other: "Something else" };
+  var statusEl = document.getElementById("status"), listEl = document.getElementById("list");
+
+  function status(text, isErr) { statusEl.textContent = text; statusEl.className = "status" + (isErr ? " err" : ""); statusEl.hidden = !text; }
+  function rpc(fn, body) {
+    return fetch(API.url + "/rest/v1/rpc/" + fn, {
+      method: "POST",
+      headers: { apikey: API.key, "Content-Type": "application/json" },
+      body: JSON.stringify(body)
+    }).then(function (r) {
+      if (r.status === 204) return null;
+      return r.json().then(function (j) { if (!r.ok) throw new Error(j && j.message || r.status); return j; });
+    });
+  }
+  function el(tag, cls, text) { var n = document.createElement(tag); if (cls) n.className = cls; if (text != null) n.textContent = text; return n; }
+
+  function draw() {
+    listEl.textContent = "";
+    var shown = rows.filter(function (r) { return filter === "pending" ? !r.approved : r.approved; });
+    var waiting = rows.filter(function (r) { return !r.approved; }).length;
+    document.querySelector('[data-f="pending"]').textContent = "Hidden (" + waiting + ")";
+    document.querySelector('[data-f="approved"]').textContent = "On the website (" + (rows.length - waiting) + ")";
+    if (!shown.length) { status(filter === "pending" ? "No hidden reviews." : "No reviews are on the website yet."); return; }
+    status("");
+    shown.forEach(function (r) {
+      var c = el("article", "rev" + (r.approved ? "" : " pending"));
+      var top = el("div", "top");
+      var who = el("div");
+      who.appendChild(el("span", "name", r.name));
+      who.appendChild(document.createTextNode(" "));
+      who.appendChild(el("span", "stars", new Array(r.rating + 1).join("★")));
+      top.appendChild(who);
+      top.appendChild(el("span", "meta", new Date(r.created_at).toLocaleString("en-IN", { day: "numeric", month: "short", year: "numeric", hour: "numeric", minute: "2-digit" })));
+      c.appendChild(top);
+      if (r.item) c.appendChild(el("div", "meta", ITEMS[r.item] || r.item));
+      c.appendChild(el("p", "msg", r.message));
+      var act = el("div", "act");
+      function btn(label, cls, action, confirmText) {
+        var b = el("button", cls, label); b.type = "button";
+        b.addEventListener("click", function () {
+          if (confirmText && !window.confirm(confirmText)) return;
+          b.disabled = true;
+          rpc("admin_set_review", { p_key: key, p_id: r.id, p_action: action }).then(load, function (e) { b.disabled = false; status("Could not save: " + e.message, true); });
+        });
+        act.appendChild(b);
+      }
+      if (r.approved) btn("Hide from website", "", "hide");
+      else btn("Show on website", "ok", "approve");
+      btn("Delete", "del", "delete", "Delete this review for good? This cannot be undone.");
+      c.appendChild(act);
+      listEl.appendChild(c);
+    });
+  }
+  function load() {
+    status("Loading…");
+    return rpc("admin_list_reviews", { p_key: key }).then(function (j) { rows = j || []; draw(); }, function (e) {
+      rows = []; listEl.textContent = "";
+      status(/not allowed/i.test(e.message) ? "This link is not valid. Use the full private link you were given." : "Could not load reviews: " + e.message, true);
+    });
+  }
+  Array.prototype.forEach.call(document.querySelectorAll("[data-f]"), function (b) {
+    b.addEventListener("click", function () {
+      filter = b.dataset.f;
+      Array.prototype.forEach.call(document.querySelectorAll("[data-f]"), function (x) { x.setAttribute("aria-pressed", String(x === b)); });
+      draw();
+    });
+  });
+  document.getElementById("reload").addEventListener("click", load);
+  if (!API) { status("Reviews are not set up in js/config.js.", true); return; }
+  if (!key) { status("This link is missing its private key. Use the full private link you were given.", true); return; }
+  load();
+})();
+</script>
+</body>
+</html>
